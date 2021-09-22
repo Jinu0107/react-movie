@@ -14,7 +14,7 @@ function App() {
   })
 
   const onInputSearch = (e: any) => {
-    if (e.key == 'Enter') {
+    if (e.key === 'Enter') {
       setKeyword(e.currentTarget.value);
     }
   }
@@ -27,6 +27,20 @@ function App() {
     if (!sort.isSorting) {
       setSort({
         target: 'name',
+        isSorting: true
+      })
+    } else {
+      setSort({
+        target: '',
+        isSorting: false
+      })
+    }
+  }
+
+  const onClickLikeSort = () => {
+    if (!sort.isSorting) {
+      setSort({
+        target: 'like',
         isSorting: true
       })
     } else {
@@ -50,7 +64,8 @@ function App() {
             <Button variant="outline-danger" onClick={onClickReset}>초기화</Button>
           </div>
           <div>
-            <Button variant={`${sort.target != 'name' && !sort.isSorting ? 'outline-' : ''}secondary`} onClick={onClickNameSort}>이름기준 정렬</Button>
+            <Button variant={`${sort.target === 'name' && sort.isSorting ? '' : 'outline-'}secondary`} onClick={onClickNameSort}>이름기준 정렬</Button>
+            <Button variant={`${sort.target === 'like' && sort.isSorting ? '' : 'outline-'}secondary`} onClick={onClickLikeSort}>좋아요기준 정렬</Button>
           </div>
         </Container>
       </header>

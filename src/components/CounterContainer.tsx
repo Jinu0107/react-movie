@@ -10,7 +10,6 @@ const CounterContainer = ({ movieCd }: { movieCd: number }) => {
   }));
 
   const dispatch = useDispatch();
-
   const onLikeIncrement = (movieCd: any) => dispatch(likeIncrement(movieCd));
   const onLikeDecrement = (movieCd: any) => dispatch(likeDecrement(movieCd));
 
