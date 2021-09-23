@@ -3,19 +3,24 @@ import axios from "axios";
 import { useAsync } from 'react-async';
 import { Spinner } from 'react-bootstrap';
 import CounterContainer from './CounterContainer';
+import { RouteComponentProps } from 'react-router-dom';
 
 
 const key = '935570770eda3fe30629a2e2841c8a19';
 
-const loadMovie = async ({ movieCd }: any) => {
+const loadMovie = async ({ movieCd }: any): Promise<Object> => {
   const { data } = await axios.get(`https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=${key}&movieCd=${movieCd}`);
   return data;
 }
 
-const MovieDetail = ({ match }: any) => {
+interface MatchParams {
+  movieCd: string;
+}
+
+const MovieDetail = ({ match }: RouteComponentProps<MatchParams>) => {
   const { movieCd } = match.params;
 
-  const { data, error, isLoading } = useAsync({
+  const { data, error, isLoading }: any = useAsync({
     promiseFn: loadMovie,
     movieCd
   })
@@ -31,7 +36,7 @@ const MovieDetail = ({ match }: any) => {
     return <h2>에러가 발생하였습니다.</h2>
   }
 
-  const { movieInfo } = data.movieInfoResult;
+  const { movieInfo }: any = data.movieInfoResult;
 
   return (
     <div className="detail">

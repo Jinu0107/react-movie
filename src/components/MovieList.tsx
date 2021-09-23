@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const key = "935570770eda3fe30629a2e2841c8a19";
 
-const reducer = (state: any, action: any) => {
+const reducer = (state: any, action: any): Object => {
   switch (action.type) {
     case "LOADING":
       return {
@@ -42,7 +42,7 @@ const MovieList = ({ keyword, sort }: { keyword: string; sort: any }) => {
     error: null,
   });
 
-  const loadMovieList = async () => {
+  const loadMovieList = async (): Promise<void> => {
     try {
       dispatch({ type: "LOADING" });
       const { data } = await axios.get(
@@ -54,7 +54,7 @@ const MovieList = ({ keyword, sort }: { keyword: string; sort: any }) => {
     }
   };
 
-  const { data, error, loading } = state;
+  const { data, error, loading }: any = state;
 
   useEffect(() => {
     loadMovieList();

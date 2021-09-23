@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import CounterContainer from './CounterContainer';
 
 
-const MovieItem = ({ movieCd, movieNm, genreAlt }: any) => {
+const MovieItem = ({ movieCd, movieNm, genreAlt }: { movieCd: string, movieNm: string, genreAlt: string }) => {
   return (
     <Card style={{ width: '18rem', margin: '20px' }}>
       <Card.Img variant="top" src="/images/noImage.jpeg" />
